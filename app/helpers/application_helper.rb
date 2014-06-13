@@ -54,13 +54,7 @@ module ApplicationHelper
   end
 
   def home_url u=nil
-    if u
-      "/#{u.type == BetaMember ? 'member' : u.type.to_s.downcase}/home"
-    elsif @user
-      "/#{@user.type == BetaMember ? 'member' : @user.type.to_s.downcase}/home"
-    else
-      "/"
-    end
+    "/user/home"
   end
 
   def host

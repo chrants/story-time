@@ -95,10 +95,6 @@
 					<%= label_tag :zip_code %>
 					<%= text_field_tag :zip_code, nil, class: 'block form-control col-md-12', required: true %>
 				</div>
-				<div class="row">
-					<%= label_tag :school_name %>
-					<%= text_field_tag :school_name, nil, class: 'block form-control col-md-12', required: true %>
-				</div>
 			</div>
 			<div class="col-lg-2 col-md-1"><!-- Nothing --></div>
 		</div>
@@ -110,12 +106,6 @@
 		<hr/>
 		<div class="row">
 			<div class="col-md-1"><!-- Nothing --></div>
-			<div class="col-md-3 no-side-padding planSelection">
-				<%= label_tag(:plan, "Plan") %>
-				<%#<input type="radio" name="plan" value="user" selected />User
-				<input type="radio" name="plan" value="member" />Member%>
-				<input type="radio" name="plan" value="beta_member" checked="checked" required="required" />BETA Member
-			</div>
 			<div class="col-md-3 no-side-padding planSelection">
 				<p>Please read our <a href="/public/terms" data-title="Terms and Conditions" data-url="terms.html">terms and conditions.</a></p>
 				<input type="checkbox" id="agreeBox" name="agree" parsley-required /> I Agree
