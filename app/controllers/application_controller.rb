@@ -96,12 +96,7 @@ class ApplicationController < ActionController::Base
     when :public
       ;
     when :user
-      unless @user || @member || @admin
-        alert_unauthorized(level, @address)
-        redirect_to home_url
-      end
-    when :member
-      unless @member || @admin
+      unless @user || @admin
         alert_unauthorized(level, @address)
         redirect_to home_url
       end
