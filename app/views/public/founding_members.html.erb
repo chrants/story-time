@@ -1,0 +1,28 @@
+<%# Founding members page %>
+
+<% content_for :title do %>
+  Pioneer Teachers
+<% end %>
+
+<%# Intro #%>
+<div class="jumbotron">
+  <h2>Pioneer Teachers</h2>
+  <p>If you join us before September 30, 2014 you will recongnized as a <i>Pioneer Teacher</i> of our service.<br/>
+  You will help provide <b>quality</b> resources to teachers around the US. <b>That is something to be proud of.</b></p>
+</div>
+
+<%# Give a div for each founding member. %>
+<% @founding_members.each do |m| %>
+  <div>
+    <%# IMAGE THUMBNAIL %>
+    <div><%= m.name %></div>
+    
+    <%# IF EMAIL IS PUBLIC %>
+    <% if m.display_email_publicly %>
+    <div><%= m.emails[0] %></div>
+    <% end %>
+    
+    <div><%= m.school_name %></div>
+    <div><%= "#{m.city}, #{m.state}" %></div>
+  </div>
+<% end %>

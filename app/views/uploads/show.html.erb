@@ -1,0 +1,101 @@
+<% content_for :title do %>
+  Teacher Resources | <%= @upload.title %>
+<% end %>
+
+<div id="uploadData" data-id="<%= @upload.id %>">
+  <h2><%= @upload.title.capitalize %></h2>
+  <small><%= @upload.filename %></small>
+</div>
+<br/>
+
+<div class="row">
+  <div class="pull-left upload-left">
+    <%= image_tag(((@upload.thumbnail) ? (@upload.thumbnail.path) : ("http://placekitten.com/200/220")), class: 'img-responsive') %><br/>
+  </div>
+
+  <div class="pull-left">
+    <div id="descriptionArea"><%= raw @upload.description %></div>
+    <p>Type<%= 's' if @upload.types.count > 1 %>: 
+      <% @upload.types.each do |type| %>
+      <%= link_to type.name.capitalize, "/uploads/type/#{type.name}" %>
+      <% end %>
+    </p>
+    <div class="serif">
+      <i>
+        <span><%= @upload.member.name if @upload.member %></span>
+        <small>
+          <span><%# "Created at #{@upload.created_at} on #{@upload.created_on}" %></span>
+          <span>
+            Last Updated <%= time_of @upload.updated_at %>
+            <%# "Updated at #{@upload.updated_at} on #{@upload.updated_on}" %>
+          </span>
+        </small>
+      </i>
+    </div>
+
+    <div id="rating" class="rating inline-block" data-rating=""></div><span><%= @upload.ratings.avg(:value) || "Not Rated" %></span>
+    <script type="text/javascript">
+      $(function() {
+        $('#rating').rating('<%= uploads_path @upload %>/rate', {
+          maxvalue: 5, 
+          increment: 0.5
+          <%- if @rating %>
+            , curvalue: <%= @rating.value %>
+          <% else %>
+            , curvalue: <%= @upload.ratings.avg(:value) || 0 %>
+          <% end %>
+        });
+      });
+    </script>
+
+    <ul class="list-inline">Topics:
+      <% @upload.topics.each do |topic|; puts "<li>#{topic.name}</li>"; end %>
+    </ul>
+    <ul class="list-inline">Subjects:
+      <% @upload.subjects.each do |subject|; puts "<li>#{subject.name}</li>"; end %>
+    </ul>
+    
+    <div class="download-container">
+      <% if @is_member %>
+      <button class="downloadBtn btn btn-info" href="/uploads/download/<%= @upload.id %>">Download&nbsp;&nbsp;<span class="glyphicon glyphicon-download-alt"></span></button>
+      <% else %>
+      <button class="btn btn-info disabled">Download <span class="glyphicon glyphicon-download-alt"></span></button>
+      <h3>Become a premium member to download today!</h3>
+      <% end %>
+      <p>Downloaded <%= @downloads.length %> times.</p>
+    </div>
+  </div>
+</div>
+
+
+<div id="commentArea">
+	<ul>
+		<% @upload.comments.each do | comment | %>
+		<li class="comment">
+			<div class="commentContents">
+				<%= comment.title %><br/>
+				<%= comment.contents %>
+			</div>
+			<p><%= "Created at #{comment.created_at} on #{comment.created_on}" %></p>
+			<p><%= "Updated at #{comment.updated_at} on #{comment.updated_on}" %></p>
+			<p>By <%= link_to comment.user.name, '#' %></p>
+		</li>
+		<% end %>
+	</ul>
+	<div class="thumbnail comment comment-form">
+		<%= form_tag( { action: :'uploads/comment' }, multipart: true ) do %>
+		<input type="hidden" name="upload_id" value="<%= @upload.id %>" >
+		<span class="glyphicon glyphicon-comment"></span>
+		<%= text_field_tag "title", '', placeholder: "Comment Title", class: 'form-control' %>
+		<hr/>
+		<textarea class="form-control" name="contents" placeholder="Enter a comment..."></textarea>
+		<br/>
+		<%= submit_tag "Post!" %>
+		<% end %>
+	</div>
+</div>
+
+<div id="dialogBox" title="Preparing download..." style="display: none;">
+	<div class="ui-progressbar-value ui-corner-left ui-corner-right" style="width: 100%; height:22px; margin-top: 20px;"></div>
+	Downloading your file...
+</div>

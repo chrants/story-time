@@ -1,0 +1,63 @@
+<% content_for :title do %>
+  Welcome to Educational Design Studios!
+<% end %>
+
+<h1>Welcome <small>You are now a registered user</small></h1>
+<p class="text-success">Be sure to check your email <a href=""><code><%= @user.emails[0].name %></code></a> for a confirmation link.</p>
+
+<% if @user.type == User %>
+  <div class="panel panel-info">
+    <div class="panel-heading"><h2>Next Steps...</h2></div>
+    <div class="panel-body">
+      <ol>
+        <li></li>
+        <li><a href="#upgrade">Upgrade!</a> To share, explore, and rate resources from all over!</li>
+      </ol>
+    </div>
+  </div>
+  <div class="panel panel-primary" id="upgrade">
+    <div class="panel-heading"><h2>Upgrading</h2></div>
+    <div class="panel-body">
+      <p class="lead">You can upgrade at <b>any time!</b></p>
+      
+      <div class="col-md-8">
+        <p class="lead">Quality Resources</p>
+        <p></p>
+      </div>
+      <div class="col-md-4">
+        <%= image_tag 'care.png', class: 'img-responsive' %>
+      </div>
+      <div class="col-md-8">
+        <%= image_tag 'teachers.png', class: 'img-responsive' %>
+      </div>
+      <div class="col-md-4">
+        <p class="lead">Made By Teachers for Teachers</p>
+        <p></p>
+        
+      </div>
+      <div class="col-md-8">
+        <p class="lead">Helping Change Classrooms</p>
+        <p></p>
+      </div>
+      <div class="col-md-4">
+        <%= image_tag 'care.png', class: 'img-responsive' %>
+      </div>
+      <div class="col-md-8">
+        <%= image_tag 'support.png', class: 'img-responsive' %>
+      </div>
+      <div class="col-md-4">
+        <p class="lead">Support</p>
+        <p></p>
+      </div>
+    </div>
+  </div>
+<% elsif @user.type == BetaMember %>
+  <div class="panel panel-info">
+    <div class="panel-heading"><h2>Next Steps...</h2></div>
+    <div class="panel-body">
+      <ol>
+        <li>Check your email for a confirmation link.</li>
+      </ol>
+    </div>
+  </div>
+<% end %>

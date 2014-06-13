@@ -1,0 +1,129 @@
+<%# User profile page
+#   profile
+#   uploads
+#   activity
+#   messages
+#%>
+
+<% content_for :title do %>
+  Profile
+<% end %>
+
+<ul class="nav nav-tabs nav-pills">
+  <li data-tab="profile" class="tab">
+    <a href="#profile">Profile</a>
+  </li>
+  <li data-tab="uploads" class="tab">
+    <a href="#uploads">Uploads <span class="badge"><%= @member ? @user.uploads.count : 0 %></span></a>
+  </li>
+  <li data-tab="activity" class="tab">
+    <a href="#activity">Activity</a>
+  </li>
+  <li data-tab="messages" class="tab">
+    <a href="#messages">Messages <span class="badge">0</span></a>
+  </li>
+</ul>
+<ul id="tabContents" class="list-unstyled">
+  <li data-tab="profile">
+    <h2 style="margin-left:5px;"><%= @user.name %></h2>
+    <hr/>
+    <div class="row">
+      <%= form_tag users_path(@user), method: 'put' do %>
+      <div class="col-md-5">
+        <div class="panel panel-primary">
+          <div class="panel-heading"><b>Contact Info</b></div>
+          <div class="panel-body">
+            <div><b>Emails:</b>
+              <% @user.emails.each do |email| %>
+              <div style="display: block;"><%= email.name %></div>
+              <% end %>
+            </div>
+            <div id="emailBoxes"></div>
+            <a id="addEmailButton" class="btn btn-info">Add Email</a>
+            <!-- <button id="addEmailButton" class="btn btn-link">Add Email</button> -->
+            <script type="text/javascript">
+            $("#addEmailButton").click(function(evt) {
+            $("#emailBoxes").append("<input type='text' class='block' />");
+            evt.preventDefault();
+            });
+            </script>
+            <p><b>Recieve e-mail notifications:</b>
+            <input id="recieving_emails" name="recieving_emails" type="checkbox" <%= 'checked="checked"' if @user.recieving_emails %>/>
+            </p>
+            
+            <p><b>State:</b> <div contenteditable=true class="form-control"><%= @user.state %></div></p>
+            <p><b>City:</b> <div contenteditable=true class="form-control"><%= @user.city %></div></p>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-md-offset-1 col-md-5">
+        <div class="panel panel-primary">
+          <div class="panel-heading"><b>Plan</b></div>
+          <div class="panel-body">
+            <p><b>Plan:</b> <%= @user.type.to_s %></p>
+            <p><b>Payment:</b> <%= @user.type == User ? 'Free' : @user.type %></p>
+            <%- if @user.type == User %>
+            <button class="upgrade-button btn btn-primary">Upgrade!</button>
+            <%- end %>
+          </div>
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading"><b>Privacy</b></div>
+          <div class="panel-body">
+            <p><b>Display Email Publicly:</b>
+            <input name="display_email_publicly" id="display_email_publicly" type="checkbox" <%= 'checked="checked"' if @user.display_email_publicly %>/>
+            </p>
+          </div>
+        </div>
+        <%= submit_tag 'Save!', class: 'btn btn-success col-xs-12 col-md-offset-8 col-md-4' %>
+      </div>
+      <%- end %>
+    </div>
+  </li>
+  <li data-tab="uploads">
+    <h1>Uploaded Resources <% if @member %><a href="/upload" class="btn btn-success">Upload</a><% end %></h1>
+    <hr/>
+    <ul class="list-unstyled">
+      <%- if @member %>
+      <%- @member.uploads.each do |upload| %>
+      <li>
+        <h4 style="display: inline-block"><%= link_to upload.title, uploads_path(upload) %></h4>
+        <%= link_to "Edit", "#{uploads_path upload}/edit", class: 'btn btn-success', style: '' %>
+        <br/>
+        <small><%= upload.filename %></small>
+        <br/>
+        <small>
+        Subjects:
+        <ul class="list-inline">
+          <% upload.subjects.each do |s| %>
+          <li><%= link_to(s.name.capitalize, "/uploads/topics/#{s.name}") %></li>
+          <% end %>
+        </ul>
+        </small>
+        <small>Downloaded <%= upload.downloads.count %> times.</small>
+        <small class="block">Last Updated <%= upload.updated_at %></small>
+        <small>Created <%= upload.created_on %></small>
+      </li>
+      <%- end %>
+      <%- else %>
+      <div class="jumbotron"><h2>Not a Paying Member</h2></div>
+      <p class="lead">Please upgrade today to a paying member to:</p>
+      <ul>
+        <li>Store &amp; Share Resources</li>
+        <li>Download Resources</li>
+        <li>Review Resources</li>
+        <li><a href="#">And More!!!</a></li>
+      </ul>
+      <%- end %>
+    </ul>
+  </li>
+  <li data-tab="activity">
+    <h1>Activity</h1>
+    <hr/>
+  </li>
+  <li data-tab="messages">
+    <h1>Messages</h1>
+    <hr/>
+  </li>
+</ul>

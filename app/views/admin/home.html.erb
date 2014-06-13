@@ -1,0 +1,108 @@
+<div class="col-lg-4">
+  <p><%= link_to 'All Uploads (as Admin)', '/admin/uploads' %></p>
+  <p><%= link_to 'Pending Uploads (as Admin)', '/admin/pending_uploads' %></p>
+  <p><%= link_to 'Flags', '/admin/flags' %></p>
+  <p><%= link_to 'Something Else', '/admin/home' %></p>
+</div>
+
+<% @uploads ||= Upload.all %>
+<div class="col-lg-8">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= link_to 'Uploaded Resources', '/admin/uploads' %></h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-hover">
+        
+        <tbody>
+        <% @uploads.each do |upload| %>
+          <tr data-approved="<%= upload.approved %>">
+            <td colspan="" rowspan="" headers="" style="min-width: 140px; max-width: 145px; padding-right: 0px;">
+              <div id="rating<%= upload.id %>" class="rating" data-rating=""></div>
+              <script type="text/javascript">
+                $(function() {
+                  $('#rating<%= upload.id %>').rating('<%= uploads_path upload %>/rate', {
+                    maxvalue: 5, 
+                    increment: 0.5
+                    <% rating = UploadRating.first(upload: upload, user: @user) %>
+                    <%- if rating %>
+                      , curvalue: <%= rating.value %>
+                    <% else %>
+                      , curvalue: <%= upload.ratings.avg(:value) || 0 %>
+                    <% end %>
+                  });
+                });
+              </script>
+
+              <div>
+                <%= upload.ratings.avg(:value) || "Not Rated" %> / 5
+              </div>
+            </td>
+
+            <td colspan="" rowspan="" headers="" class="col-md-7 ">
+              <div class="resource-header">
+              <% if upload.title %>
+                <%= link_to upload.title.capitalize, uploads_path(upload) %>
+              <% else %>
+                No Title
+              <% end %>
+              </div>
+            </td>
+
+            <td>
+              <div> 
+                <% upload.types.each do |type| %>
+                <%= link_to type.name.capitalize, "/uploads/type/#{type.name}" %>
+                <% end %>
+              </div>
+            </td>
+
+            <td>
+
+              <div>
+              <% if upload.member %>
+                <%= link_to upload.member.name, "/user/#{upload.member.id}/profile" %>
+              <% else %>
+                <% Rails.logger.error "No member for upload #{upload.id}" %>
+              <% end %>
+              </div>
+            </td>
+
+            <td>
+              <div data-id="<%= upload.id %>">
+                <button class="approveBtn btn btn-success <%= 'disabled' if upload.approved %>"><%= (upload.approved) ? ('Approved') : ('Approve') %> <span class="glyphicon glyphicon-ok"></span></button>
+                <button class="deleteBtn btn btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></button>
+              </div>
+            </td>
+          </tr>  
+        
+        <% end %>
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">Recently Joined</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-hover">
+        <tbody>
+          <% User.all(:order => [:created_on.desc]).each do |user| %>
+            <tr>
+              <td>
+                <%= user.name %>
+                <%= user.emails[0].name if user.emails[0] %>
+                <%= user.city %>, <%= user.state %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

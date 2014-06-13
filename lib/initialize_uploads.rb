@@ -1,0 +1,1 @@
+# Initialize uploads if needed to (i.e. the db was cleared)

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require_relative '../config/boot'
+require 'rake'
+
+# require each file from lib directory
+#Dir.glob("./lib/*.{rb}").each { |file| require file }
+
+Rake.application.run

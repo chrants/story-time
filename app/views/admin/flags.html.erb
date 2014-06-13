@@ -1,0 +1,26 @@
+<table>
+	<caption>Flags</caption>
+	<thead>
+		<tr>
+			<th>Flags .... (:</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @flags.each do |flag| %>
+		<tr>
+			<% if flag.type== UploadFlag %>
+			<% upload = flag.upload %>
+			<td><%= image_tag upload.thumbnail.path, height: 200, width: 200 %></td>
+			<td><%= link_to upload.title, "uploads/#{upload.id}" %></td>
+			<td><%= upload.member.name %></td>
+			<% elsif flag.type== CommentFlag %>
+			<% comment = flag.comment %>
+			<% elsif flag.type== UserFlag %>
+			<% user = flag.user %>
+			<% else %> <%# Generic Flag %>
+			
+			<% end %>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

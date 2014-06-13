@@ -1,0 +1,459 @@
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ *= require_self
+ *= require bootstrap-united.min
+ * fotorama
+ * require tagit
+ *= require selectize
+ */
+
+body {
+	background-image: url('dimension/dimension.png');
+	background-repeat: repeat;
+}
+
+/* GENERAL */
+@for $col from 1 through 12 {
+  .col-#{$col} {
+    width: 100px * $col !important;
+    max-width: 100px * $col;
+  }
+}
+
+.block {
+	display: block !important;
+}
+
+.inline-block {
+	display: inline-block !important;
+}
+
+.inline {
+    display: inline !important;
+}
+
+.pos-rel, .pos-relative, .position-relative {
+    position: relative !important;
+}
+
+.pos-abs, .pos-absolute, .position-absolute {
+    position: absolute !important;
+}
+
+.no-outline {
+    outline: 0 !important;
+}
+
+.no-border {
+    border: 0 !important;
+}
+
+.invisible, .invis {
+    opacity: 0.0 !important;
+}
+
+.fully-visible, .visible {
+    opacity: 1.0 !important;
+}
+
+.no-left-padding {
+    padding-left: 0px !important;
+}
+
+.no-right-padding {
+    padding-right: 0px !important;
+}
+
+.no-top-padding {
+    padding-top: 0px !important;
+}
+
+.no-bottom-padding {
+    padding-bottom: 0px !important;
+}
+
+.no-side-padding {
+    @extend .no-right-padding, .no-left-padding;
+}
+
+.no-vert-padding {
+    @extend .no-top-padding, .no-bottom-padding;
+}
+
+.no-padding {
+	padding: 0px !important;
+}
+
+.no-left-margin {
+    margin-left: 0px !important;
+}
+
+.no-right-margin {
+    margin-right: 0px !important;
+}
+
+.no-top-margin {
+    margin-top: 0px !important;
+}
+
+.no-bottom-margin {
+    margin-bottom: 0px !important;
+}
+
+.no-side-margin {
+    @extend .no-right-margin, .no-left-margin;
+}
+
+.no-vert-margin {
+    @extend .no-top-margin, .no-bottom-margin;
+}
+
+.no-margin {
+    margin: 0px !important;
+}
+
+.no-left-spacing {
+    @extend .no-left-padding, .no-left-margin;
+}
+
+.no-right-spacing {
+    @extend .no-right-padding, .no-right-margin;
+}
+
+.no-top-spacing {
+    @extend .no-top-padding, .no-top-margin;
+}
+
+.no-bottom-spacing {
+    @extend .no-bottom-padding, .no-bottom-margin;
+}
+
+.no-side-spacing {
+    @extend .no-side-padding, .no-side-margin;
+}
+
+.no-vert-spacing {
+    @extend .no-vert-padding, .no-vert-margin;
+}
+
+.no-spacing {
+    @extend .no-padding, .no-margin;
+}
+
+.flexy {
+	display: flex;
+}
+
+
+/* FORM */
+
+label {
+	color: black;
+}
+
+input:not(.no-input-style), textarea:not(.no-input-style), select, option {
+	max-width: 500px;
+	max-height: 320px;
+}
+
+select {
+	display: block;
+}
+
+/* HEADER */
+header {
+	margin-bottom: 50px;
+}
+
+.navbar.navbar-fixed-top {
+    padding-bottom: 0;
+    border: 0;
+}
+
+.navbar-brand {
+	display: inline-block;
+}
+
+.navbar #search-bar {
+	margin-top: 5px;
+}
+
+ul.nav.navbar-nav li > a {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.nav-group, .nav-group * {
+	display: inline-block !important;
+	list-style: none;
+}
+
+.nav-group > :first-child {
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	margin-right: 0;
+}
+
+.nav-group > :last-child {
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	margin-left: 1px;
+	margin-right: 0;
+}
+
+.top-search {
+  max-width: 250px;
+  padding-right: 10.5px !important;
+  padding-left: 12px;
+}
+
+/*.nav-group > :nth-child(n):not(:first-child, :last-child) {
+	border-radius: -2.5px;
+	margin-left: 0px;
+	margin-right: 0;
+}*/
+
+.nav-group > * {
+	border: 1px;
+	max-width: 70%;
+}
+
+$t-r-dropdown: 163px;
+
+#resource-dropdown-right {
+    /* HTML 5!!! */
+    transform: 			translate($t-r-dropdown,0px);
+    -ms-transform: 		translate($t-r-dropdown,0px); /* IE 9 */
+    -webkit-transform: 	translate($t-r-dropdown,0px); /* Safari and Chrome */
+    border-left: 3px solid lightgray;
+}
+
+/*ul.navbar-nav li {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-radius: 2px;
+}*/
+
+
+/* CONTENTAREA */
+div#contentArea {
+	margin-top: 10px;
+	display: inline-block;
+	clear: both;
+	width: 100%;
+	background-color: #F2F2F2;
+}
+
+.resource {
+  clear: both;
+	display: block;
+	max-width: 250px;
+}
+
+.resource-header {
+  font-weight: bold;
+}
+
+.resource .img-rounded {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.resource .thumbnail {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.resource .thumbnail hr {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.resource-area {
+	display: inline-block;
+	background-color: white;
+	padding-bottom: 5px;
+}
+
+
+$ubuntu-orange: #DD4814;
+
+.carousel-inner .item .container .carousel-caption p {
+	color: $ubuntu-orange;
+}
+
+
+/* FOOTER */
+footer {
+	display: block;
+	clear: both;
+}
+
+footer .seperator {
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: left;
+	/*margin-right: auto;
+	margin-left: auto;*/
+}
+
+footer nav ul {
+	display: inline-block;
+	margin-left:  50px;
+	margin-right: 50px;
+}
+
+
+/* require jquery.ui.all */
+
+/*
+ul.nav li.nav-element, nav li.nav-element {
+	width: auto;
+	text-align: center;
+	padding-left: 2px;
+	padding-right: 2px;
+	display: inline-block;
+}
+
+ul.thumbnails, ul.thumbnails .thumbnail {
+	width: auto;
+	display: block;
+}
+
+.container {
+	background-color: #DDDDDD;
+}
+
+#loginForm input:not(#commit) {
+	width: 100px;
+	height: 15px;
+}
+
+.resource .thumbnail {
+	background-color: lightyellow;
+}
+*/
+
+#carousel-bck {
+	background-image: url("dimension/dimension.png");
+	background-repeat: repeat;
+}
+
+.carousel-caption-bck {
+	color: #000;
+	background-color: rgba(164, 155, 155, 0.8);
+	border-radius: 25px;
+	border-style: solid;
+	border-width: 5px;
+	border-color: rgba(0, 0, 0, 0.6);
+}
+.carousel-caption > img {
+	margin-left: auto;
+	margin-right: auto;
+}
+#carousel-indicator-bck {
+	z-index: -20;
+	position: relative;
+	top: 23px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100px;
+	height: 25px;
+	color: #000;
+	background-color: rgba(164, 155, 155, 0.8);
+	border-radius: 25px;
+	border-style: solid;
+	border-width: 5px;
+	border-color: rgba(0, 0, 0, 0.6);
+}
+
+#myCarousel {
+
+}
+
+.row > .well {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+dd { 
+  font-family:"Times New Roman", Times, serif;
+}
+
+p { 
+  font-family:"Times New Roman", Times, serif;
+}
+
+.serif {
+  font-family:"Times New Roman", Times, serif;
+}
+
+
+#commentArea {
+  clear: both;
+}
+
+.upload-left {
+  margin-right: 50px;
+}
+
+
+@media all and (min-width: 1200px) {
+  .rating {
+    margin: 15px !important;
+  }
+}
+
+@media all and (min-width: 1106px) and (max-width: 1199px) {
+  .container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    width: 95% !important;
+  }
+
+  .navbar-brand {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .top-search {
+    max-width: 245px;
+    padding-right: 3px !important;
+    padding-left: 5px;
+  }
+
+  .top-search button {
+    max-width: 230px;
+  }
+
+  .rating {
+    margin: 10px !important;
+  }
+}
+
+@media all and (max-width: 1105px) {
+  .container {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    width: 100% !important;
+  }
+
+  .rating {
+    margin: 7px !important;
+
+  }
+}
+
+.navbar * {
+  //font-size: 12pt;
+}

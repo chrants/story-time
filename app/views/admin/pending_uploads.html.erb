@@ -1,0 +1,25 @@
+<table>
+	<caption>Pending Uploads</caption>
+	<thead>
+		<tr>
+			<th>Uploads .... (:</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @uploads.each do |upload| %>
+		<tr class="uploadRow" data-id="<%= upload.id %>" data-type="uploads">
+			<td>
+				<% unless upload.approved %>
+				<button class="approveBtn" type="">	Approve</button>
+				<% else %>
+				Approved
+				<% end %>
+			</td>
+			<td><button class="deleteBtn">Delete</button></td>
+			<td><%= image_tag upload.thumbnail.path, height: 200, width: 200 %></td>
+			<td><%= link_to upload.title, uploads_path(upload) %></td>
+			<td><%= upload.member.name %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

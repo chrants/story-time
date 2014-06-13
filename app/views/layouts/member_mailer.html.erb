@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h4>Dear valued member,</h4>
+    <%= yield %>
+    <p>To unsubscribe from recieving emails, click <a href="/user/unsubscribe/#{@user.token}">here</a>.</p>
+  </body>
+</html>

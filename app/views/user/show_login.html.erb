@@ -1,0 +1,38 @@
+
+<%= form_tag("/user/login", id: 'loginForm', method: 'post') do %>
+
+<%= label_tag :email, 'Email', class: "control-label", required: 'true' %>
+<input type="email" name="email" class="form-control" required />
+<%= label_tag :password, 'Password', class: "control-label", required: 'true', minlength: "10" %>
+<input type="password" name="password" class='form-control' required />
+<%= submit_tag "Login!", id: 'commit', class: 'btn btn-info' %>
+<% end %>
+
+<%#<script type="in/Login">
+Hello, <?js= firstName ?> <?js= lastName ?>.
+</script>%>
+
+<!--<div id="notificationArea"></div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$loginForm = $("#loginForm");
+		$notificationArea = $(".notificationArea");
+		$("#loginForm #commit").click(function(evt){
+			evt.preventDefault();
+			$inputs = $("#loginForm input, textarea");
+			values = [];
+			$inputs.each(function(){
+				values[this.name] = $(this).val();
+			});
+			console.log(values);
+			// AJAX post
+			$.post("/user/login", {
+				email: values['email'],
+				password: values['password']
+			}, function(data, status){
+				if(data==='Logged In!')
+					window.location.replace("/user/home");
+			});
+		});
+	});
+</script> -->

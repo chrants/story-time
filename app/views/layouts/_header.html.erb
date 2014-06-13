@@ -1,0 +1,129 @@
+<header class="inline-block">
+  <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+    <div class="container">
+      <button class="navbar-toggle" data-target=".navbar-responsive-collapse" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-header" style="padding-right: 10px">
+        <a class="navbar-brand" href="<%= home_url %>">EDesignStudios</a>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse navbar-responsive-collapse" style="overflow-x: hidden;">
+        <ul class="nav navbar-nav navbar-left">
+          <%#<li class="<%= 'active' if @page == '/' or @page == '/public/index' or @page == '/index' or @page == '/public/' %">
+            <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+          </li>%>
+
+          <% if not @user or (@user and not @user.created) %>
+          <li class="<%= 'active' if /\/((about)|(public\/about))\/*/ =~ @page %>">
+            <a href="/public/about"><span class="glyphicon glyphicon-book"></span> About</a>
+          </li>
+          <li class="<%= 'active' if /\/((join)|(plans)|(public\/(join)|(plans)))\/*/ =~ @page %>">
+            <a href="/public/plans"><span class="glyphicon glyphicon-bookmark"></span> How It Works</a>
+          </li>
+          <li>
+            <a href="/public/founding_members">Pioneer Teachers</a>
+          </li>
+          <%- elsif not (@user or @admin) %>
+          <li class="<%= 'active' if @page == '/member/upgrade' %>">
+            <a href="/member/upgrade">Upgrade!</a>
+          </li>
+          <%- end %>
+     
+          <%= form_tag '/uploads/search', class: "navbar-form navbar-left nav-group top-search", style: "margin-left: 0px;", method: 'get' do %>
+            <div class="form-group">
+              <%= text_field_tag :query, '', class: "form-control col-2", placeholder: "Search Resources..." %>
+            </div>
+            <button type="submit" id="commit" class="btn btn-mini btn-warning">
+              <b class="glyphicon glyphicon-search"></b>
+            </button>
+          <%- end %>
+        </ul> <!-- END LEFT NAV -->
+
+        <ul class="nav navbar-nav navbar-right img-responsive" >
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              Curriculum Resources <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li role="presentation" class="dropdown-header">Math</li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/algebra">Algebra</a></li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/geometry">Geometry</a></li>
+              <%#<li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/statistics">Statistics</a></li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/trigonometry">Trigonometry</a></li>%>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/calculus">Calculus</a></li>
+
+              <%#
+              <li role="presentation" class="divider"></li>
+              <li role="presentation" class="dropdown-header">Social Studies</li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/us history">US History</a></li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/world history">World History</a></li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/government">Government</a></li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/economics">Economics</a></li>
+              %>
+              <li role="presentation" class="divider"></li>
+
+              <li role="presentation" class="dropdown-header">Science</li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/biology">Biology</a></li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/physics">Physics</a></li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/chemistry">Chemistry</a></li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/astronomy">Astronomy</a></li>
+
+              <li role="presentation" class="divider"></li>
+
+              <li role="presentation" class="dropdown-header">Middle School Science</li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/middle school earth science">Earth Science</a></li>
+              <%#<li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/middle school space science">Space Science</a></li>%>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/middle school physical science">Physical Science</a></li>
+              <li class="tooltip-onhover" role="presentation"><a role="menuitem" tabindex="-1" href="/uploads/browse/">Life Science</a></li>
+
+              <li role="presentation" class="divider"></li>
+
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="/uploads">Browse All</a></li>
+            <%#</ul>%>
+            <%#<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="resource-dropdown-right" >%>
+              
+            </ul>
+          </li>
+          <% unless @user and @user.created %>
+          <li class="dropdown btn-mini">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Login!<span class="caret"/>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <div class="well-sm">
+                  <%= render file: :'/user/show_login' %>
+                </div>
+              </ul>
+          </li>
+          <li class="btn-mini btn-success">
+            <a href="/user/signup">
+              Join Us!
+            </a>
+          </li>
+          <% else %>
+          <li class="dropdown btn-group" >
+            <a href="#" class="btn-info dropdown-toggle" data-toggle="dropdown">
+              <%= @user.name %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <% if @admin %>
+              <li><%= link_to "Admin Home", "/admin" %></li>
+              <% end %>
+              <li><%= link_to "Profile", "/user/profile#profile" %></li>
+              <li><%= link_to "Upload a Resource!", "/upload" %></li>
+              <li><%= link_to "Uploaded Resources", "/user/profile#uploads" %></li>
+            </ul>
+          </li>
+          <li class="btn-mini btn-info">
+            <%= link_to "Logout", '/logout' %>
+          </li>
+          <% end %>
+        </ul> <!-- END RIGHT NAV -->
+      </div> <!-- END NAV-COLLAPSE -->
+    </div> <!-- END NAV CONTAINER -->
+  </nav>
+</header>

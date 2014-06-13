@@ -1,0 +1,82 @@
+<%# Main Website Page Layout #%> 
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="description" content="Educational Design Studios: A site where Teachers Share Resources in Algebra, Precalculus, Calculus, Statistics, Physics, Chemistry, Biology, World History, U.S. History, Middle School Science, and More!">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Location" content="home.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="copyright" content="&copy; 2013-2014 EDesign Studios LLC; Alan Gnospelius">
+    <%= csrf_meta_tags %>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <%= stylesheet_link_tag 'application', media: "all" %>
+    <%= stylesheet_link_tag params[:controller], media: 'all' %>
+
+    <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag "//code.jquery.com/ui/1.10.4/jquery-ui.js" %>
+    <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/parsley.js/1.2.3/parsley.min.js" %>
+
+    <%#<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+      api_key: 75b5h5ckfb5cso
+      onLoad: onLinkedInLoad
+      authorize: true
+    </script>
+    <script src="/javascripts/application.js" type="text/javascript">
+      function onLinkedInLoad() {
+           IN.Event.on(IN, "auth", onLinkedInAuth);
+      }
+      function onLinkedInAuth() {
+        IN.API.Profile("me").result(displayProfiles);
+      }
+    </script>%>
+
+    <%= yield :head %>
+
+    <title><%= yield(:title) || params[:controller].capitalize %> | Educational Design Studios</title>
+  </head>
+  
+  <body data-page="<%= @page = @address %>">
+    <%= render 'layouts/noscript' %>
+
+    <div class="container">
+      <%= render 'layouts/header' %>
+
+      <main>
+        <div id="contentArea" class="well">
+          <div id="page" data-page="<%= @page %>"></div>
+          <%= alert_snippet || raw("<div class='hidden alert'><span class='body'></span><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button></div>") %>
+          <%= yield %>
+        </div>
+      </main>
+
+      <%= render 'layouts/footer' %>
+    </div>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <%= javascript_include_tag 'jquery_addons' %>
+    <%= javascript_include_tag params[:controller] %>
+    <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  
+
+    <% if @admin and params[:controller].capitalize != "Admin" %>
+      <%= stylesheet_link_tag 'uploads', media: "all" %>
+      <%= javascript_include_tag 'uploads' %>
+    <% end %>
+
+    <%#<script type="text/javascript" src="https://github.com/typicaljoe/taffydb/raw/master/taffy.js"></script>%>
+  </body>
+</html>

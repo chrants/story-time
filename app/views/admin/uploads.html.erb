@@ -1,0 +1,108 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'uploads' %>
+  <%= stylesheet_link_tag 'uploads', media: "all" %>
+<% end %>
+
+<% @uploads ||= Upload.all(approved: true) %>
+<h2>Resources <small><%= @uploads.size %> found</small></h2>
+<table class="table table-hover">
+  
+  <tbody>
+  <% @uploads.each do |upload| %>
+    <tr>
+      <td colspan="" rowspan="" headers="" class="col-md-2">
+        <div id="rating<%= upload.id %>" class="rating" data-rating=""></div>
+        <script type="text/javascript">
+          $(function() {
+            $('#rating<%= upload.id %>').rating('<%= uploads_path upload %>/rate', {
+              maxvalue: 5, 
+              increment: 0.5
+              <% rating = UploadRating.first(upload: upload, user: @user) %>
+              <%- if rating %>
+                , curvalue: <%= rating.value %>
+              <% else %>
+                , curvalue: <%= upload.ratings.avg(:value) || 0 %>
+              <% end %>
+            });
+          });
+        </script>
+      </td>
+
+      <td colspan="" rowspan="" headers="" class="col-md-3">
+        <%= link_to image_tag(((upload.thumbnail) ? (upload.thumbnail.path) : ("http://placekitten.com/200/220")), class: 'img-responsive'), uploads_path(upload).gsub('.', '/') %>
+      </td>
+
+      <td colspan="" rowspan="" headers="" class="col-md-7 ">
+        <div class="resource-header">
+        <% if upload.title %>
+          <%= upload.title.capitalize %>
+        <% else %>
+          No Title
+        <% end %>
+        </div>
+        <hr/>
+
+        <div>
+          Type<%= 's' if upload.types.count > 1 %>: 
+          <% upload.types.each do |type| %>
+          <%= link_to type.name.capitalize, "/uploads/type/#{type.name}" %>
+          <% end %>
+        </div>
+
+        <div>
+          Rating: <%= upload.ratings.avg(:value) || "Not Rated" %> / 5
+        </div>
+
+        <div>
+        <% if upload.member %>
+          By <%= link_to upload.member.name, "/user/#{upload.member.id}/profile" %>
+          <% else %>
+          <% Rails.logger.error "No member for upload #{upload.id}" %>
+        <% end %>
+        </div>
+
+        <% if @admin %>
+          <div data-id="<%= upload.id %>">
+            <button class="approveBtn btn btn-success <%= 'disabled' if upload.approved %>"><%= (upload.approved) ? ('Approved') : ('Approve') %> <span class="glyphicon glyphicon-ok"></span></button>
+            <button class="deleteBtn btn btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></button>
+
+          </div>
+        <%- end %>
+      </td>
+    </tr>  
+  
+  <% end %>
+  </tbody>
+  
+</table>
+
+
+<!--<ul class="resource-area thumbnails pull-left" >
+  <h3>Uploads</h3>
+  <hr/>
+
+  <% @uploads.each do |upload| %>
+	<li class="uploadRow resource col-lg-4" data-id="<%= upload.id %>" data-type="uploads">
+		<div class="resource-header">
+			<%= link_to upload.title, uploads_path(upload) %>
+		</div>
+		<div class="thumbnail">
+			<%= image_tag(((upload.thumbnail) ? (upload.thumbnail.path) : ("http://placekitten.com/200/220")), class: 'img-responsive') %>
+		</div>
+		<div class="thumbnail">
+			<div>
+				<%= upload.description %>
+			</div>
+			<div>
+				<%= form_tag do %>
+					<button class="approveBtn btn btn-success <%= 'disabled' if upload.approved %>"><%= (upload.approved) ? ('Approved') : ('Approve') %> <span class="glyphicon glyphicon-ok"></span></button>
+					<button class="deleteBtn btn btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></button>
+				<% end %>
+			</div>
+			<div>
+				By <%= link_to upload.member.name, "/user/#{upload.member.id}/profile" %>
+			</div>
+		</div>
+	</li>
+	<% end %>
+</ul>-->

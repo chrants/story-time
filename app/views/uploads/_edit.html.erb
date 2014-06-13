@@ -1,0 +1,103 @@
+<%= javascript_include_tag "//tinymce.cachefly.net/4.0/tinymce.min.js" %>
+
+<div class="panel-body">
+<% @upload ||= Upload.new %>
+<div class="row">
+  <div class="col-md-5">
+    <%= label_tag :title, 'Title' %>
+    <%= text_field_tag :title, '', class: 'form-control', value: @upload.title, required: true, :"parsley-minlength" => 4, :"parsley-maxlength" => 60, :'autocomplete' => "off" %>
+
+    <%= label_tag :description %>
+    <textarea name="description" class="form-control" parsley-maxlength=2000 autocomplete="off"><%= @upload.description %></textarea>
+
+    <!--<ul id="tagitList" class="tagit"></ul>-->
+    <%= submit_tag "Upload File!", class: 'btn btn-success', id: 'uploadBtn', style: 'margin-top: 10px;' %>
+  </div>
+  <div class="col-md-1"><!-- Nothing --></div>
+  <div class="col-md-6">
+
+    <%= label_tag :type, "Type of Upload" %>
+    <select name="type">
+      <% UploadType.all.each do |upType| %>
+        <option value="<%= upType.name %>" <%= 'selected' if @upload.types.include? upType %>><%= upType.name.capitalize %></option>
+      <% end %>
+    </select>
+    <%= label_tag :file %>&nbsp;&nbsp;<b class="glyphicon glyphicon-folder-open"></b>
+    <% if @upload.filename %>
+      <h4><%= @upload.title %></h4>
+      <small><%= @upload.filename %></small><br>
+    <% else %>
+    
+    <% end %>
+    <%= file_field_tag :file, required: (@upload.filename ? false : true) %>
+
+    <%= label_tag :thumbnail %>&nbsp;&nbsp;<b class="glyphicon glyphicon-camera"></b>
+    <%= file_field_tag :thumbnail, required: false %>
+    <%#<span class="btn btn-success fileinput-button">
+      <i class="glyphicon glyphicon-plus"></i>
+      <span>Add files...</span>
+          <!-- The file input field used as target for the file upload widget -->
+          <input id="fileupload" type="file" name="files[]" multiple>
+      </span>
+      <br>
+      <br>
+      <!-- The global progress bar -->
+      <div id="progress" class="progress">
+          <div class="progress-bar progress-bar-success"></div>
+      </div>
+      <!-- The container for the uploaded files -->
+      <div id="files" class="files"></div>
+    </span>%>
+     
+    <%= label_tag :level %>
+    <select id="levelsSelect" name="level" placeholder="Select a Level...">
+      <optgroup>
+        <option>Regular</option>
+        <option>Pre-AP</option>
+        <option>Advanced Placement</option>
+      </optgroup>
+    </select>
+
+    <%= label_tag :subjects, 'Subjects', class: 'block' %>
+    <div class="row">
+      <div class="col-md-8">
+        <select id="subjectsSelect" name="subjectsSelect" placeholder="Select a subject" multiple>
+
+          <% @upload.subjects.each do |subject| %>
+            <option value="<%= subject.name.downcase %>" selected><%= subject.name.capitalize %></option>
+          <% end %>
+          <% Subject.all.each do |subject| %>
+            <% unless @upload.subjects.include? subject %>
+            <option value="<%= subject.name.downcase %>"><%= subject.name.capitalize %></option>
+            <% end %>
+          <% end %>
+        </select>
+        <input type="hidden" id="subjects" name="subjects" />
+      </div>
+      <script type="text/javascript">
+        $('#subjectsSelect').selectize({
+          delimiter: ',',
+          persist: false,
+          /*create: function(input) { 
+              return {
+                  value: input,
+                  text: input
+              }
+          },*/
+          maxItems: 5,
+          hideSelected: true
+        });
+      </script>
+      <div class="col-md-2"><!-- Nothing --></div>
+    </div>
+    <hr />
+  </div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.selectize-input input').attr("autocomplete", "off");
+  });
+</script>
