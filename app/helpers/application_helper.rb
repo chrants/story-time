@@ -58,26 +58,6 @@ module ApplicationHelper
   end
 
   def host
-    if Rails.env.development? or Rails.env.test?
-      "https://localhost:3000"
-    else
-      "https://educationaldesignstudios.com"
-    end
   end
 
-  def thumbnail_for upload=@upload, options={}
-    if upload
-      upload.put_extension if upload.extension == "extension"
-      case upload.extension
-      when "doc", "docx", "docm", "dotx", "dot", "odt", "wps"
-        image_tag "word.png", options
-      when "ppt", "pptx", "pptm" 
-        image_tag "powerpoint.png", options
-      when "xls", "xlsx", "xlsm", "xlt", "xltx", "xltm", "xlm"
-        image_tag "excel.png", options
-      else
-
-      end
-    end
-  end
 end
