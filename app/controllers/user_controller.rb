@@ -102,12 +102,6 @@ class UserController < ApplicationController
   end
 
 
-  def download_preview
-    @upload = Upload.get(params[:upload_id])
-    @downloads = @uploads.downloads
-  end
-
-
   # GET
   # Logout User
   # Redirects user home and sets session[:user] to nil
