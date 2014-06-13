@@ -85,7 +85,6 @@ class ApplicationController < ActionController::Base
   def init_user
     @user = User.first(token: session[:user])
     if @user
-      @member = @user if @user.type == Member or @user.type == Admin or @user.type == BetaMember
       @admin = @user if @user.type == Admin
     end
   end
