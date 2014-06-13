@@ -21,7 +21,3 @@ end
 class PostComment < Comment
     belongs_to :post
 end
-
-class UploadComment < Comment
-    belongs_to :upload
-end
