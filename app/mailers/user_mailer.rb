@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
   def welcome_email user
     @user = user
     @email_to = @user.emails[0].name
-  	mail to: @email_to, subject: 'Welcome to Educational Design Studios!'
+  	mail to: @email_to, subject: 'Welcome to Story Time!'
   end
 
   def advertise session

@@ -28,19 +28,7 @@ module ApplicationHelper
   		datetime.strftime format
   	end
   end
-
-  def upload_path
-    "/upload"
-  end
-
-  def uploads_path u=nil
-    if u
-      "/uploads/#{u.id}"
-    else
-      "/uploads"
-    end
-  end
-
+  
   def user_path
     
   end

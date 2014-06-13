@@ -2,7 +2,7 @@ defaults: &defaults
   host: localhost
 
 development:
-  database: db/eds_development.db
+  database: db/story_time_development.db
   adapter: sqlite3
   <<: *defaults
 
