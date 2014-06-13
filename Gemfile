@@ -10,8 +10,6 @@ source 'https://rails-assets.org'
 RAILS_VERSION = '~> 3.2.15'
 DM_VERSION    = '~> 1.2.0'
 
-#gem 'fotoramajs'
-
 gem 'activesupport',  		RAILS_VERSION,
 							:require => 'active_support'
 gem 'actionpack',     		RAILS_VERSION,

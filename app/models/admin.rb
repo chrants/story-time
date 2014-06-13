@@ -1,3 +1,2 @@
-class Admin < Member
-	has n, :posts
+class Admin < User
 end
