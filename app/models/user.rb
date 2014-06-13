@@ -48,7 +48,6 @@ class User
 							required: false,
 							lazy: true
 
-	property :school_name,  String
 
 	property :created_on, 	Date,
 	                        lazy: true
@@ -69,8 +68,6 @@ class User
                 default: true
 
 
-	has 1, :school,			required: false
-	#has n, :user_ratings, "UserRating", through: Resource, required: false
 	has n, :ratings
 	has n, :comments
 	has n, :flags
