@@ -75,7 +75,7 @@ class User
   property :linkedin_token, String,
               :required => false
 
-	has 1, :thumbnail,		'UserThumbnail'
+	#has 1, :thumbnail,		'UserThumbnail'
 
 	validates_with_method :emails, :has_email?
 
