@@ -19,7 +19,7 @@
     <%= stylesheet_link_tag 'application', media: "all" %>
     <%= stylesheet_link_tag params[:controller], media: 'all' %>
 
-    <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" %>
+    <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag "//code.jquery.com/ui/1.10.4/jquery-ui.js" %>
     <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/parsley.js/1.2.3/parsley.min.js" %>
@@ -70,12 +70,6 @@
     <%= javascript_include_tag 'jquery_addons' %>
     <%= javascript_include_tag params[:controller] %>
     <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  
-
-    <% if @admin and params[:controller].capitalize != "Admin" %>
-      <%= stylesheet_link_tag 'uploads', media: "all" %>
-      <%= javascript_include_tag 'uploads' %>
-    <% end %>
 
     <%#<script type="text/javascript" src="https://github.com/typicaljoe/taffydb/raw/master/taffy.js"></script>%>
   </body>

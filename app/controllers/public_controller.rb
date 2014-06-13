@@ -1,10 +1,6 @@
 class PublicController < ApplicationController
     
     def index
-        if Upload
-            @uploads = Upload.all(limit: 3)#topics:, limit: 3)
-            @uploads = Upload.all(limit: 3) unless @uploads.get(0)
-        end
     end
     def mission; end
     def subjects; end
@@ -21,7 +17,5 @@ class PublicController < ApplicationController
     def plans; end
     def pricing; end
     def terms; end
-    def founding_members
-      @founding_members = BetaMember.all confirmed: true
-    end
+    def founding_members; end
 end

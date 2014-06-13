@@ -122,29 +122,4 @@ class ApplicationController < ActionController::Base
     #session[:user]
   end
 
-
-  # Define the filter
-  before_bugsnag_notify :add_user_info_to_bugsnag
-
-  private
-  def add_user_info_to_bugsnag(notif)
-    if @user
-      # Set the user that this bug affected
-      # Email, name and id are searchable on bugsnag.com
-      notif.user = {
-        email:  @user.emails[0].name,
-        name:   @user.name,
-        id:     @user.id
-      }
-
-      # Add some app-specific data which will be displayed on a custom
-      # "Diagnostics" tab on each error page on bugsnag.com
-      #notif.add_tab(:diagnostics, {
-      #  product: current_product.name
-      #})
-    else
-      notif.user = "None"
-    end
-  end
-
 end
