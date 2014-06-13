@@ -14,10 +14,6 @@ class Rating
     belongs_to  :user,          required: true
 end
 
-class UploadRating < Rating
-    belongs_to  :upload,        required: false
-end
-
 =begin
 class CommentRating < Rating
     belongs_to  :comment,       required: true
@@ -28,17 +24,4 @@ end
 
 class PostRating < Rating
     belongs_to  :post,          required: false
-end
-
-class Testimony < Rating
-    property    :title,         String,
-                                length: 3..50,
-                                messages: {
-
-                                }
-    property    :contents,      String,
-                                length: 4..1000,
-                                messages: {
-
-                                }
 end

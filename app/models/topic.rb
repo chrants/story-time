@@ -10,6 +10,4 @@ class Topic
 	property :updated_on, Date
 	property :updated_at, DateTime
 
-	has n, :subjects, through: Resource
-	has n, :uploads,  through: Resource
 end

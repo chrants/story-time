@@ -6,10 +6,6 @@ class Flag
 	belongs_to :user
 end
 
-class UploadFlag < Flag
-	belongs_to :upload
-end
-
 class CommentFlag < Flag
 	belongs_to :comment
 end
