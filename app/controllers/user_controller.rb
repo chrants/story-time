@@ -79,14 +79,6 @@ class UserController < ApplicationController
   # @param [Hash] params
   def profile; end
 
-
-  def view_subjects
-    @subjects = Subject.all
-
-    assert @subjects.size > 0
-  end
-
-
   def view_topics
     Subject.all(name: params[:subjects]) #Will this work?
   end
@@ -159,7 +151,7 @@ class UserController < ApplicationController
   #   @option params [String, Number] :zip_code
   #   @option params [String] :password
   def signup
-    user_hash = params.only('name', 'password', 'city', 'state', 'zip_code', 'school_name')
+    user_hash = params.only('name', 'password', 'city', 'state', 'zip_code')
 
     if Email.get(params[:email])
       flash[:alert]={class: 'warning', message: 'A user with this email already exists.'}
@@ -174,7 +166,7 @@ class UserController < ApplicationController
       
       begin
         
-        user.update( created: true, type: BetaMember )
+        user.update( created: true )
         session[:user] = user.token
         begin
           UserMailer.welcome_email(user).deliver
