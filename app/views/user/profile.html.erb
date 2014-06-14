@@ -115,13 +115,13 @@
   </li>
 
   <li data-tab="groups">
-    <h1>Groups &ensp; <button class="btn">New group</button></h1>
+    <h1>Groups &ensp; <button class="btn"><%= link_to "New Group", "/groups/new" %></button></h1>
       
     <hr/>
-      <% @user.groups.each do |groups| %>
-        <h3><%= groups.name %>  <button class="btn">Start a story</button> </h3> 
+      <% @user.groups.each do |group| %>
+        <h3><%= link_to group.name, "/groups/#{ group.id }" %> </h3> 
       
-       <p>&ensp; &ensp;<%= groups.description %></p>
+       <p>&ensp; &ensp;<%= group.description %></p>
        
        
       

@@ -1,0 +1,23 @@
+<h1 style="text-align:center">New Group!</h1>
+
+<!-- Need name and description of group -->
+<!-- So create a form -->
+
+<%= form_tag "/groups", id: 'groups', method: 'post' do %>
+  <div class="row">
+    
+    	<h2 style="text-align:center"><%= label_tag :name %></h2>
+    </div>
+    <br>
+		<%= text_field_tag :name, nil, class: 'block form-control center', required: true %>
+        <br>
+        <br>
+        <h2 style="text-align:center"><%= label_tag :description %></h2>
+        <%= text_area_tag :description, nil, class: 'block form-control center', required: true %>
+        <br>
+        <br>
+        <br>
+    <%= submit_tag "Create it!", class: 'btn block center '%>
+  </div>
+<% end %>
+
