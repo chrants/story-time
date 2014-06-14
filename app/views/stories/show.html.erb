@@ -1,5 +1,9 @@
-
 <ul>
+  <li>You must enter between <%= @rules.min_chars %> and <%= @rules.max_chars %> characters.</li>
+  <li>You must enter between <%= @rules.min_words %> and <%= @rules.max_chars %></li>
+</ul>
+
+<ul class="list_unstyled">
 <% @story.story_scenes.each do |scene| %>
   <li>
     <%= scene.body %>
