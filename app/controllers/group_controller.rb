@@ -16,7 +16,7 @@ class GroupController < ApplicationController
   end
 
   def destroy
-    @user.destroy if @admin
+    
   end
 
 end

@@ -1,7 +1,7 @@
 class StoryController < ApplicationController
   
   before_filter 'check_credentials(:user)',
-    only: [:update]
+    only: [:update, :create]
   
   def show
     @story = Story.get params[:id]
@@ -13,7 +13,7 @@ class StoryController < ApplicationController
   end
 
   def create
-    
+
   end
 
   #POST to create a new scene.
@@ -22,7 +22,7 @@ class StoryController < ApplicationController
   end
 
   def destroy
-    @user.destroy if @admin
+
   end
 
   private
