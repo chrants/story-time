@@ -1,4 +1,4 @@
-class StoryController < ApplicationController
+class StoriesController < ApplicationController
   
   before_filter 'check_credentials(:user)',
     only: [:update, :create]

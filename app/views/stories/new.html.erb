@@ -1,7 +1,7 @@
-<%= form_tag "/story/create/", id: 'story_scene',  method: 'post', :"parsley-validate" => true, novalidate: true) do %>
+<%= form_tag "/stories", id: 'story_scene',  method: 'post', :"parsley-validate" => true, novalidate: true do %>
   <div class="row">
     <%= label_tag :name %>
-    <%= text_field_tag :name, class: "", :"x-webkit-speech" => true, :"speech" => true %>
+    <%= text_field_tag :name, "", class: "", :"x-webkit-speech" => true, :"speech" => true %>
   </div>
   <div class="row">
     <%= label_tag :description %>
