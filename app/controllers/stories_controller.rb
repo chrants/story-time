@@ -9,6 +9,7 @@ class StoriesController < ApplicationController
   
   def show
     @story_scenes = @story.story_scenes
+    @rules = @story.rules
   end
 
   def new
@@ -48,6 +49,7 @@ class StoriesController < ApplicationController
       @story.story_scenes << scene
       @story.save!
       
+      redirect_to "/profile"
     else
       flash[:alert] = {}
     end
