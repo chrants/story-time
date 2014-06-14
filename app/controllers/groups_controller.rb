@@ -11,7 +11,13 @@ class GroupsController < ApplicationController
   end
 
   def update
-    
+    e = Email.get(params[:users][:email])
+    u = e.user
+    unless @group.users.include? u
+      @group.users << u
+      @group.save
+    end
+    redirect_to "/groups/#{@group.id}"
   end
 
   def new

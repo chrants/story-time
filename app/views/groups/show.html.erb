@@ -2,8 +2,24 @@
 
 <p style="text-align:center"><%= @group.description %></p>
 
+<p style="text-align: center">current Users</p>
 
 <h2 style="text-align: center"><%= link_to "New story", "/groups/#{@group.id}/stories/new", class: "center btn-primary" %></h2>
-<!-- Hey add a button here!
 
-for new stories-->
+
+
+<% @group.users.each do |person| %>
+    <p style="text-align: center"><%= person.name %></p>
+<% end %>
+
+
+<p>Add users!</p>
+<%= form_tag "/groups/#{@group.id}", id: 'groups', method: 'put' do %>
+
+<%= label_tag 'Email' %>
+
+<%= text_field_tag 'users[email]', "", class: "" %>
+
+<%= submit_tag "Add'em", class: "btn" %>
+<% end %>
+
