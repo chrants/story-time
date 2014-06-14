@@ -43,7 +43,7 @@ class StoryController < ApplicationController
       body.words.size < rules.min_words and body.words.size > rules.max_words
 
       @story.story_scenes << scene
-      @story.save!
+      assert @story.save!
     else
       flash[:alert] = {class: "error",  message: "Check the rules!" }
     end
