@@ -416,9 +416,9 @@ p {
 
 @media all and (min-width: 1106px) and (max-width: 1199px) {
   .container {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    width: 95% !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    width: 100% !important;
   }
 
   .navbar-brand {
@@ -443,8 +443,8 @@ p {
 
 @media all and (max-width: 1105px) {
   .container {
-    padding-left: 5px !important;
-    padding-right: 5px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
     width: 100% !important;
   }
 

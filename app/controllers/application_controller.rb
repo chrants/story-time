@@ -68,11 +68,6 @@ class ApplicationController < ActionController::Base
     @user || User.first(token: session[:user]) != nil
   end
 
-  def premium?
-    member = Member.first(token: session[:user]) || Admin.first(token: session[:user])
-    @member || member != nil
-  end
-
   protected
 
   def before_init

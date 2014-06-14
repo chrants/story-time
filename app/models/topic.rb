@@ -9,5 +9,4 @@ class Topic
 	                      lazy: true
 	property :updated_on, Date
 	property :updated_at, DateTime
-
 end

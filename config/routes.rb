@@ -30,10 +30,6 @@ Eds::Application.routes.draw do
 
   get 'admin',       to: 'admin#home'
 
-  resources :uploads, :except => [ :show ]
-  resources :blogs
-  resources :users
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
