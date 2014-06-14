@@ -50,9 +50,8 @@
       <%= render 'layouts/header' %>
 
       <main>
-        <div id="contentArea" class="well">
+        <div id="contentArea" >
           <div id="page" data-page="<%= @page %>"></div>
-          <%= alert_snippet || raw("<div class='hidden alert'><span class='body'></span><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button></div>") %>
           <%= yield %>
         </div>
       </main>
