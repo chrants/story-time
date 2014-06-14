@@ -12,7 +12,7 @@
 </ul>
 
 <% if @user.groups.include? @group %>
-  <%= form_tag "/groups/#{ @group.id }/stories/#{ @story.id }", id: 'story_scene',  method: 'post', :"parsley-validate" => true, novalidate: true do %>
+  <%= form_tag "/groups/#{ @group.id }/stories/#{@story.id}/scene", id: 'story_scene',  method: 'post', :"parsley-validate" => true, novalidate: true do %>
     <textarea name="body" id="body" parsley-trigger="change" parsley-validation-minlength="<%= @rules.min_chars %>" parsley-maxlength="<%= @rules.max_chars %>"></textarea>
     <%= submit_tag "Post Scene!" %>
   <% end %>

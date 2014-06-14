@@ -49,7 +49,7 @@ class StoriesController < ApplicationController
       @story.story_scenes << scene
       @story.save!
       
-      redirect_to "/profile"
+      redirect_to "/groups/#{ @group.id }/stories/#{ @story.id }"
     else
       flash[:alert] = {}
     end
@@ -61,7 +61,7 @@ class StoriesController < ApplicationController
 
   private
   def get_story
-    @story = Story.get params[:id]
+    @story = Story.get params[:id] || params[:story_id]
   end
   
   def get_group
