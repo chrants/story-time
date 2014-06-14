@@ -14,7 +14,7 @@
     <a href="#profile">Profile</a>
   </li>
   <li data-tab="uploads" class="tab">
-    <a href="#uploads">Uploads <span class="badge"><%= @member ? @user.uploads.count : 0 %></span></a>
+    <a href="#uploads">Stories <span class="badge"><%= @member ? @user.uploads.count : 0 %></span></a>
   </li>
   <li data-tab="activity" class="tab">
     <a href="#activity">Activity</a>
@@ -82,41 +82,24 @@
     </div>
   </li>
   <li data-tab="uploads">
-    <h1>Uploaded Resources <% if @member %><a href="/upload" class="btn btn-success">Upload</a><% end %></h1>
+    <h1>Stories </h1>
     <hr/>
     <ul class="list-unstyled">
-      <%- if @member %>
-      <%- @member.uploads.each do |upload| %>
-      <li>
-        <h4 style="display: inline-block"><%= link_to upload.title, uploads_path(upload) %></h4>
-        <%= link_to "Edit", "#{uploads_path upload}/edit", class: 'btn btn-success', style: '' %>
-        <br/>
-        <small><%= upload.filename %></small>
-        <br/>
-        <small>
-        Subjects:
-        <ul class="list-inline">
-          <% upload.subjects.each do |s| %>
-          <li><%= link_to(s.name.capitalize, "/uploads/topics/#{s.name}") %></li>
-          <% end %>
-        </ul>
-        </small>
-        <small>Downloaded <%= upload.downloads.count %> times.</small>
-        <small class="block">Last Updated <%= upload.updated_at %></small>
-        <small>Created <%= upload.created_on %></small>
-      </li>
-      <%- end %>
-      <%- else %>
-      <div class="jumbotron"><h2>Not a Paying Member</h2></div>
-      <p class="lead">Please upgrade today to a paying member to:</p>
-      <ul>
-        <li>Store &amp; Share Resources</li>
-        <li>Download Resources</li>
-        <li>Review Resources</li>
-        <li><a href="#">And More!!!</a></li>
-      </ul>
-      <%- end %>
-    </ul>
+     
+      <% if @user.story_scenes %>
+            
+            <h3 style="text-align : center">No stories!</h3>
+            
+        <% else %>
+            <% @user.story_scenes.each do |storyScene| %>  
+                <h2 style="text-align : center">
+                    <%= storyScene.story.description %>
+                </h2>
+
+            <% end %>
+      <% end %>
+        
+     </ul>
   </li>
   <li data-tab="activity">
     <h1>Activity</h1>
