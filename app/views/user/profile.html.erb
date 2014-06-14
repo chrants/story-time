@@ -90,18 +90,20 @@
     <hr/>
     <ul class="list-unstyled">
      
-      <% if @user.story_scenes %>
+      <% if  @user.story_scenes.story.count == 0 %>
             
             <h3 style="text-align : center">No stories!</h3>
             
         <% else %>
             <% @user.story_scenes.story.each do |story| %>  
-                <h3 style="text-align : center">
+                <h3 >
                     <%= story.description %>
                 </h3>
-        
-                <p>&ensp; &ensp;<%= story.name %></p>
-        
+      
+                <p ><%= story.name %></p>
+      
+              <hr>  
+      
             <% end %>
       <% end %>
         

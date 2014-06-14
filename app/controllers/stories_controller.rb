@@ -38,7 +38,7 @@ class StoriesController < ApplicationController
     scene_hash = params.only('body')
     
     scene = StoryScene.new(scene_hash)
-
+    scene.user = @user
     body = scene.body
 
     rules = @story.rules
@@ -47,7 +47,7 @@ class StoriesController < ApplicationController
       body.words.size < rules.min_words and body.words.size > rules.max_words
 
       @story.story_scenes << scene
-      @story.save!
+      assert @story.save!
       
       redirect_to "/groups/#{ @group.id }/stories/#{ @story.id }"
     else
