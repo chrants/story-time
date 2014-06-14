@@ -6,15 +6,18 @@
   <div class="row">
     <%= label_tag :description %>
     <textarea name="description" id="description" x-webkit-speech speech></textarea>
-    <br>
-    
-    <h3>Rules</h3>
+    <br>    
+  </div>
+
+  <h3>Rules</h3>
+  <div class="row">
     <%= label_tag :max_chars %>
-    <%= text_field_tag 'rules[max_chars]', "", class: ""%>
-    
+    <%= text_field_tag 'rules[max_chars]', "", class: ""%>  
+  </div>
+
+  <div class="row">
     <%= label_tag :min_chars %>
     <%= text_field_tag 'rules[min_chars]', "", class: ""%>
-    
   </div>
 
   <%= submit_tag "Story Time!" %>
