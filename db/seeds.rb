@@ -176,15 +176,7 @@ module Seed
     				}
     			]
 
-    @@MEMBER_SEED =
-    			[
-    				{
-    				    email: 'christian.tschoepe@rackspace.com'
-    				},
-                    {
-                        email: 'djpeacher@gmail.com'
-                    }
-    			]
+   
 
     @@ADMIN_SEED =
     			[

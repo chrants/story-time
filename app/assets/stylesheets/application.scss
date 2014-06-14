@@ -23,6 +23,7 @@ body {
   }
 }
 
+
 .block {
 	display: block !important;
 }
@@ -288,7 +289,7 @@ div#contentArea {
 $ubuntu-orange: #DD4814;
 
 .carousel-inner .item .container .carousel-caption p {
-	color: $ubuntu-orange;
+	color: #e278e6;
 }
 
 
@@ -452,8 +453,4 @@ p {
     margin: 7px !important;
 
   }
-}
-
-.navbar * {
-  //font-size: 12pt;
 }
