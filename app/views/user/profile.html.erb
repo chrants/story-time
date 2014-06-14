@@ -13,8 +13,8 @@
   <li data-tab="profile" class="tab">
     <a href="#profile">Profile</a>
   </li>
-  <li data-tab="uploads" class="tab">
-    <a href="#uploads">Stories <span class="badge"><%= @member ? @user.uploads.count : 0 %></span></a>
+  <li data-tab="stories" class="tab">
+    <a href="#stories">Stories <span class="badge"><%= @user.story_scenes.story.count%></span></a>
   </li>
   <li data-tab="activity" class="tab">
     <a href="#activity">Activity</a>
@@ -22,6 +22,11 @@
   <li data-tab="messages" class="tab">
     <a href="#messages">Messages <span class="badge">0</span></a>
   </li>
+    
+  <li data-tab="groups" class="tab">
+    <a href="#groups">Groups <span class="badge"><%= @user.groups.count %></span></a>
+  </li>
+    
 </ul>
 <ul id="tabContents" class="list-unstyled">
   <li data-tab="profile">
@@ -63,9 +68,6 @@
           <div class="panel-body">
             <p><b>Plan:</b> <%= @user.type.to_s %></p>
             <p><b>Payment:</b> <%= @user.type == User ? 'Free' : @user.type %></p>
-            <%- if @user.type == User %>
-            <button class="upgrade-button btn btn-primary">Upgrade!</button>
-            <%- end %>
           </div>
         </div>
         <div class="panel panel-primary">
@@ -81,7 +83,7 @@
       <%- end %>
     </div>
   </li>
-  <li data-tab="uploads">
+  <li data-tab="stories">
     <h1>Stories </h1>
     <hr/>
     <ul class="list-unstyled">
@@ -91,11 +93,13 @@
             <h3 style="text-align : center">No stories!</h3>
             
         <% else %>
-            <% @user.story_scenes.each do |storyScene| %>  
-                <h2 style="text-align : center">
-                    <%= storyScene.story.description %>
-                </h2>
-
+            <% @user.story_scenes.story.each do |story| %>  
+                <h3 style="text-align : center">
+                    <%= story.description %>
+                </h3>
+        
+                <p>&ensp; &ensp;<%= story.name %></p>
+        
             <% end %>
       <% end %>
         
@@ -108,5 +112,19 @@
   <li data-tab="messages">
     <h1>Messages</h1>
     <hr/>
+  </li>
+
+  <li data-tab="groups">
+    <h1>Groups &ensp; <button class="btn">New group</button></h1>
+      
+    <hr/>
+      <% @user.groups.each do |groups| %>
+        <h3><%= groups.name %>  <button class="btn">Start a story</button> </h3> 
+      
+       <p>&ensp; &ensp;<%= groups.description %></p>
+       
+       
+      
+      <% end %>
   </li>
 </ul>
