@@ -1,7 +1,10 @@
-class GroupController < ApplicationController
+class GroupsController < ApplicationController
   
   before_filter 'check_credentials(:user)',
     only: [:update, :create]
+    
+  before_filter :get_group,
+    only: [:destroy, :show, :update]
   
   def show
     @group_stories = @group.stories
@@ -19,8 +22,9 @@ class GroupController < ApplicationController
     group_hash = params.only('name', 'description')
     g = Group.create(group_hash) 
 
-    g.users << @users
-    p.save!
+    g.users << @user
+    g.save!
+    redirect_to "/groups/#{ g.id }"
   end
 
   def destroy
