@@ -1,3 +1,3 @@
 Eds::Application.routes.draw do
-  resources :story
+  resources :stories
 end
