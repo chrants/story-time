@@ -12,6 +12,5 @@ Eds::Application.routes.draw do
 		  #get "pricing"
 		  get "terms"
 
-      get 'founding_members'
 	end
 end
