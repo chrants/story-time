@@ -31,7 +31,6 @@ class GroupsController < ApplicationController
     
   end
 
-  private
   def get_group
     @group = Group.get params[:id]
   end
