@@ -28,7 +28,7 @@ module ApplicationHelper
   		datetime.strftime format
   	end
   end
-  
+
   def user_path
     
   end
@@ -42,7 +42,8 @@ module ApplicationHelper
   end
 
   def home_url u=nil
-    "/user/home"
+    "/user/home" if @user
+    "/"
   end
 
   def host

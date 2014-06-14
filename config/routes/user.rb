@@ -1,5 +1,7 @@
 Eds::Application.routes.draw do
-	namespace :user do
+  resources :users
+  
+  namespace :user do
 		get 'home'
 		get "index", 	action: 'home'
 		get 'profile'
@@ -12,9 +14,7 @@ Eds::Application.routes.draw do
 		get 'show_download'
 		get 'logout'
 		post 'logout'
-		get 'upgrade'
 		get 'welcome'
 		get 'confirm_email/:token/:email', action: 'show_confirm_email'
-		resources :schools
 	end
 end
