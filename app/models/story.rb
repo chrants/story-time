@@ -1,7 +1,9 @@
 class Story
   include DataMapper::Resource
   property :id,     Serial
-
+    
+  property :name,   String
+    
   property :created_on, Date,
                         lazy: true
   property :created_at, DateTime,
