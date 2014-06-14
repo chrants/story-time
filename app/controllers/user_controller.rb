@@ -145,7 +145,8 @@ class UserController < ApplicationController
   #   @option params [String, Number] :zip_code
   #   @option params [String] :password
   def signup
-    user_hash = params.only('name', 'password', 'city', 'state', 'zip_code')
+    #debugger
+    user_hash = params.only('name', 'password')
 
     if Email.get(params[:email])
       flash[:alert]={class: 'warning', message: 'A user with this email already exists.'}

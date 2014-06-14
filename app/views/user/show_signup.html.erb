@@ -84,13 +84,7 @@
 						<option value="WY">Wyoming</option>
 					</select>
 				</div>
-				<div class="row">
-					<%= label_tag :city %>
-					<select id="city" name="city" autocomplete="off">
-
-					</select>
-					<input type="text" name="city_hidden" id="city-hidden" class='block form-control col-md-12 hidden' required=true />
-				</div>
+				
 				<div class="row">
 					<%= label_tag :zip_code %>
 					<%= text_field_tag :zip_code, nil, class: 'block form-control col-md-12', required: true %>

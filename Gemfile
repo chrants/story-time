@@ -77,7 +77,7 @@ group :test, :development do
   gem 'sqlite3'
   gem 'binding_of_caller'
   gem 'dm-sqlite-adapter'
-  #gem 'debugger'
+  gem 'debugger'
   gem 'capybara'
   gem 'rspec-rails', '~> 2.14'
   

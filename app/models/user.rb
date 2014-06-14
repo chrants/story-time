@@ -77,7 +77,7 @@ class User
 
 	#has 1, :thumbnail,		'UserThumbnail'
 
-  has n, :groups
+  has n, :groups, through: Resource
   has n, :story_scenes
 
 	validates_with_method :emails, :has_email?

@@ -12,5 +12,5 @@ class Group
   property :description, Text
 
   has n, :stories
-  has n, :users
+  has n, :users, through: Resource
 end
