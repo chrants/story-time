@@ -3,6 +3,10 @@ class StoriesController < ApplicationController
   before_filter 'check_credentials(:user)',
     only: [:update, :create]
   
+  before_filter 'get_story'
+  
+  before_filter 'get_group'
+  
   def show
     @story_scenes = @story.story_scenes
   end
@@ -18,15 +22,14 @@ class StoriesController < ApplicationController
   def create
     story_hash = params.only('name', 'description')
     rules_hash = params[:rules].only(
-      'min_chars',      'max_chars', 
-      'min_words',      'max_words',
-      'story_time_out', 'scene_time_out'
-    )
+      'min_chars', 'max_chars')
 
     story = Story.create(story_hash)
+    story.group = Group.find params[:group_id]
     story.rules = Rules.new(rules_hash)
     story.save!
-
+    
+    redirect_to "/groups/#{params[:group_id]}/stories/#{ story.id }"
   end
 
   #POST to create a new scene.
@@ -44,6 +47,7 @@ class StoriesController < ApplicationController
 
       @story.story_scenes << scene
       @story.save!
+      
     else
       flash[:alert] = {}
     end
@@ -56,6 +60,10 @@ class StoriesController < ApplicationController
   private
   def get_story
     @story = Story.get params[:id]
+  end
+  
+  def get_group
+    @group = Group.get params[:group_id]
   end
 
 end

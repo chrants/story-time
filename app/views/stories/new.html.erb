@@ -1,4 +1,4 @@
-<%= form_tag "/stories", id: 'story_scene',  method: 'post', :"parsley-validate" => true, novalidate: true do %>
+<%= form_tag "/groups/#{ @group.id }/stories", id: 'story_scene',  method: 'post', :"parsley-validate" => true, novalidate: true do %>
   <div class="row">
     <%= label_tag :name %>
     <%= text_field_tag :name, "", class: "", :"x-webkit-speech" => true, :"speech" => true %>
@@ -6,6 +6,15 @@
   <div class="row">
     <%= label_tag :description %>
     <textarea name="description" id="description" x-webkit-speech speech></textarea>
+    <br>
+    
+    <h3>Rules</h3>
+    <%= label_tag :max_chars %>
+    <%= text_field_tag 'rules[max_chars]', "", class: ""%>
+    
+    <%= label_tag :min_chars %>
+    <%= text_field_tag 'rules[min_chars]', "", class: ""%>
+    
   </div>
 
   <%= submit_tag "Story Time!" %>
