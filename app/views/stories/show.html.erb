@@ -9,7 +9,7 @@
 
 <% if @user.groups.include? @group %>
   <%= form_tag "/groups/#{ @group.id }/stories/#{ @story.id }", id: 'story_scene',  method: 'post', :"parsley-validate" => true, novalidate: true do %>
-    <textarea x-webkit-speech speech></textarea>
+    <textarea name="body" id="body" x-webkit-speech speech></textarea>
     <%= submit_tag "Post Scene!" %>
   <% end %>
 <% end %>
