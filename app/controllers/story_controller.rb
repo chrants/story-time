@@ -12,9 +12,13 @@ class StoryController < ApplicationController
     @story
   end
 
+  def create
+    
+  end
+
   #POST to create a new scene.
   def story_scene
-
+    StoryScene
   end
 
   def destroy
