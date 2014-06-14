@@ -16,15 +16,6 @@
             <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
           </li>%>
 
-          <% if not @user or (@user and not @user.created) %>
-          <li class="<%= 'active' if /\/((about)|(public\/about))\/*/ =~ @page %>">
-            <a href="/public/about"><span class="glyphicon glyphicon-book"></span> About</a>
-          </li>
-          <li class="<%= 'active' if /\/((join)|(plans)|(public\/(join)|(plans)))\/*/ =~ @page %>">
-            <a href="/public/plans"><span class="glyphicon glyphicon-bookmark"></span> How It Works</a>
-          </li>
-          <%- end %>
-     
           <!--<%= form_tag '/uploads/search', class: "navbar-form navbar-left nav-group top-search", style: "margin-left: 0px;", method: 'get' do %>
             <div class="form-group">
               <%= text_field_tag :query, '', class: "form-control col-2", placeholder: "Search Stories..." %>
